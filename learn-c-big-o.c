@@ -9,14 +9,19 @@ int main()
     int nbTerms = 0;
     double coefficent = 0;
     int n0 = 1;
-    char gn[][10] = {"1", "log-n", "n", "n-log-n", "n^"};
+    char gn[][10] = {"1", "log n", "n", "n log n", "n^"};
     char bigO[20] = "";
     int bestPow = 0, bestLog = 0;
 
     // Number of Terms
     printf("\nE.g, f(n) = 2n + 5 + 3logn. This function has 3 terms.\n");
     printf("How many terms are in the function: ");
-    scanf("%d", &nbTerms);
+    if (scanf("%d", &nbTerms) != 1 || nbTerms < 1)
+    {
+        printf("Number of terms must be a positive integer.\n");
+        return 1;
+    }
+
     printf("F(n) has %d terms\n", nbTerms);
 
     // Initialize Array
@@ -71,9 +76,7 @@ int main()
     else
         snprintf(bigO, sizeof bigO, "n^%d", bestPow);
 
-    printf("The c is %lf\n", coefficent);
-    printf("The n0 is %d\n", n0);
-    printf("f(n) is O(%s)\n", bigO);
+    printf("F(n) is O(%s) since f(n) <= %.2lf * %s for all n >= %d\n", bigO, coefficent, bigO, n0);
 
     return 0;
 }
