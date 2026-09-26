@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -32,7 +33,7 @@ int main()
             scanf("%d", &terms[i][j]);
         }
         // Calculate coefficent (c)
-        coefficent += terms[i][0];
+        coefficent += abs(terms[i][0]);
 
         // n-log-n, the first 'n' can only be of power 1 if there is a log-n in the term.
         if (terms[i][2] == 1 && terms[i][1] > 1)
