@@ -6,7 +6,7 @@ int main()
     // Variable Initialization
     int nbTerms = 0;
     double coefficent = 0;
-    int n0 = 0;
+    int n0 = 1;
 
     // Number of Terms
     printf("\nE.g, f(n) = 2n + 5 + 3logn. This function has 3 terms.\n");
@@ -34,15 +34,20 @@ int main()
         // Calculate coefficent (c)
         coefficent += terms[i][0];
 
-        // n-log-n, the first 'n' can only be of power 1 if there is a logn in the term.
+        // n-log-n, the first 'n' can only be of power 1 if there is a log-n in the term.
         if (terms[i][2] == 1 && terms[i][1] > 1)
         {
-            printf("Only n log n is supported, using n power 1.\n");
+            printf("Only n log n is supported, using n power 1 for term %d.\n", i + 1);
             terms[i][1] = 1;
         }
+
+        // n0 will be set to 2 if one term has a log-n
+        if (terms[i][2] == 1)
+            n0 = 2;
     }
 
-    printf("THe c is %lf\n", coefficent);
+    printf("The c is %lf\n", coefficent);
+    printf("The n0 is %d\n", n0);
 
     // Show the array
     for (int i = 0; i < nbTerms; i++)
