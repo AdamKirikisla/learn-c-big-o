@@ -5,7 +5,7 @@ int main()
 
     // Variable Initialization
     int nbTerms = 0;
-    int coefficent = 0;
+    double coefficent = 0;
     int n0 = 0;
 
     // Number of Terms
@@ -31,16 +31,20 @@ int main()
 
             scanf("%d", &terms[i][j]);
         }
+        // Calculate coefficent (c)
+        coefficent += terms[i][0];
     }
 
-    // Show the array
-    for (int i = 0; i < nbTerms; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            printf("(%d)\n", terms[i][j]);
-        }
-    }
+    printf("THe c is %lf\n", coefficent);
+
+    // // Show the array
+    // for (int i = 0; i < nbTerms; i++)
+    // {
+    //     for (int j = 0; j < 3; j++)
+    //     {
+    //         printf("(%d)\n", terms[i][j]);
+    //     }
+    // }
 
     return 0;
 }
