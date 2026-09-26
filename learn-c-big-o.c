@@ -33,18 +33,25 @@ int main()
         }
         // Calculate coefficent (c)
         coefficent += terms[i][0];
+
+        // n-log-n, the first 'n' can only be of power 1 if there is a logn in the term.
+        if (terms[i][2] == 1 && terms[i][1] > 1)
+        {
+            printf("Only n log n is supported, using n power 1.\n");
+            terms[i][1] = 1;
+        }
     }
 
     printf("THe c is %lf\n", coefficent);
 
-    // // Show the array
-    // for (int i = 0; i < nbTerms; i++)
-    // {
-    //     for (int j = 0; j < 3; j++)
-    //     {
-    //         printf("(%d)\n", terms[i][j]);
-    //     }
-    // }
+    // Show the array
+    for (int i = 0; i < nbTerms; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf("(%d)\n", terms[i][j]);
+        }
+    }
 
     return 0;
 }
