@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main()
 {
@@ -8,6 +9,9 @@ int main()
     int nbTerms = 0;
     double coefficent = 0;
     int n0 = 1;
+    char gn[][10] = {"1", "log-n", "n", "n-log-n", "n^"};
+    char bigO[20] = "";
+    int bestPow = 0, bestLog = 0;
 
     // Number of Terms
     printf("\nE.g, f(n) = 2n + 5 + 3logn. This function has 3 terms.\n");
@@ -45,19 +49,31 @@ int main()
         // n0 will be set to 2 if one term has a log-n
         if (terms[i][2] == 1)
             n0 = 2;
-    }
+
+        // Track the dominant term (highest power of n, then log-n as tie-breaker)
+        int p = terms[i][1], l = terms[i][2];
+        if (p > bestPow || (p == bestPow && l > bestLog))
+        {
+            bestPow = p;
+            bestLog = l;
+        }
+    } // Close outer loop
+
+    // Choose bigO
+    if (bestPow == 0 && bestLog == 0)
+        strcpy(bigO, gn[0]);
+    else if (bestPow == 0 && bestLog == 1)
+        strcpy(bigO, gn[1]);
+    else if (bestPow == 1 && bestLog == 0)
+        strcpy(bigO, gn[2]);
+    else if (bestPow == 1 && bestLog == 1)
+        strcpy(bigO, gn[3]);
+    else
+        snprintf(bigO, sizeof bigO, "n^%d", bestPow);
 
     printf("The c is %lf\n", coefficent);
     printf("The n0 is %d\n", n0);
-
-    // Show the array
-    for (int i = 0; i < nbTerms; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            printf("(%d)\n", terms[i][j]);
-        }
-    }
+    printf("f(n) is O(%s)\n", bigO);
 
     return 0;
 }
