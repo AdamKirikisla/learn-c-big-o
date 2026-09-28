@@ -76,7 +76,16 @@ int main()
     else
         snprintf(bigO, sizeof bigO, "n^%d", bestPow);
 
-    printf("F(n) is O(%s) since f(n) <= %.2lf * %s for all n >= %d\n", bigO, coefficent, bigO, n0);
+    // Output
+
+    printf("\n");
+    printf("=====================================\n");
+    printf(" Big-O Classification:  O(%s)\n", bigO);
+    printf(" c  (constant factor):  %.2lf\n", coefficent);
+    printf(" n0 (valid starting n): %d\n", n0);
+    printf("=====================================\n");
+    printf(" f(n) <= %.2lf * %s   for all n >= %d\n", coefficent, bigO, n0);
+    printf("=====================================\n");
 
     return 0;
 }
